@@ -1,4 +1,4 @@
-import React from "react";
+import React, {item} from "react";
 import {
   Table,
   TableCell,
@@ -8,8 +8,11 @@ import {
   TableBody,
   Paper,
 } from "@mui/material";
+import { useFetch } from "../../utils/functions";
+
 
 const Contacts = () => {
+  const {isLoading, contactList} = useFetch()
   return (
     <div>
       <h2 className="contact-header">Contacts</h2>
@@ -26,7 +29,42 @@ const Contacts = () => {
           </TableHead>
 
           <TableBody>
-            <TableRow></TableRow>
+            {
+              // Bilgiler gelmediği durumda Loading yazısı görünsün
+              isLoading ? (
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell colSpan={5} align="center">
+                    Loading
+                  </TableCell>
+                </TableRow>
+              ) : contactList?.lenght === 0 ? (
+                // Bilgiler olmadığı,boş olduğu  durumda veri bulunamadı mesajı
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell colSpan={5} align="center">
+                    No Result Found
+                  </TableCell>
+                </TableRow>
+              ) : (
+                // Bilgiler geldiği zaman aşağıya yazılacak kodlar çalışsın
+                contactList?.map((item, index) => (
+                  <TableRow>
+                    <TableCell align="center">{item.username} </TableCell>
+                    <TableCell align="center">{item.phoneNumber} </TableCell>
+                    <TableCell align="center">{item.gender} </TableCell>
+                    <TableCell align="center" >
+                     
+                    </TableCell>
+                    <TableCell align="center" >
+                     
+                    </TableCell>
+                  </TableRow>
+                ))
+              )
+            }
           </TableBody>
         </Table>
       </TableContainer>
