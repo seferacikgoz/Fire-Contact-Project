@@ -8,7 +8,9 @@ import {
   TableBody,
   Paper,
 } from "@mui/material";
-import { useFetch } from "../../utils/functions";
+import { useFetch, DeleteUser } from "../../utils/functions";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 const Contacts = () => {
@@ -55,11 +57,11 @@ const Contacts = () => {
                     <TableCell align="center">{item.username} </TableCell>
                     <TableCell align="center">{item.phoneNumber} </TableCell>
                     <TableCell align="center">{item.gender} </TableCell>
-                    <TableCell align="center" >
-                     
+                    <TableCell align="center"  onClick={()=> DeleteUser(item.id)}>
+                      <DeleteIcon/>
                     </TableCell>
                     <TableCell align="center" >
-                     
+                     <EditIcon/>
                     </TableCell>
                   </TableRow>
                 ))

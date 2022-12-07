@@ -1,6 +1,6 @@
 //* ADD USER
 import firebase from "./firebase";
-import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import { getDatabase, onValue, push, ref, remove, set } from "firebase/database";
 import { useEffect, useState} from "react";
 
 
@@ -41,4 +41,10 @@ export const useFetch = ()=> {
     })
     },[])
     return {isLoading, contactList}
+}
+
+export const DeleteUser = (id)=> {
+    const db = getDatabase(firebase);
+    const userRef = ref(db, "users/");
+    remove(ref(db,"users/"+id))
 }
