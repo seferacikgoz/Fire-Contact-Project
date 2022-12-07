@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Contacts from "./components/contacts/Contacts";
 import FormComponent from "./components/form/FormComponent";
@@ -21,6 +22,7 @@ function App() {
     else{
     AddUser(info)
   }
+  setInfo(initialValues)
   }
 
 const editUser = (id,username,phoneNumber,gender)=> {
@@ -31,6 +33,7 @@ const editUser = (id,username,phoneNumber,gender)=> {
     <div className="App">
       <FormComponent info={info} setInfo={setInfo} handleSubmit={handleSubmit}/>
       <Contacts editUser={editUser} />
+      <ToastContainer/>
     </div>
   );
 }

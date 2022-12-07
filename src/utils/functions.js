@@ -2,6 +2,7 @@
 import firebase from "./firebase";
 import { getDatabase, onValue, push, ref, remove, set, update } from "firebase/database";
 import { useEffect, useState} from "react";
+import Toastify from "./toastify";
 
 
 export const AddUser = (info) => {
@@ -45,8 +46,10 @@ export const useFetch = ()=> {
 
 export const DeleteUser = (id)=> {
     const db = getDatabase(firebase);
-    const userRef = ref(db, "users/");
+   /*  const userRef = ref(db, "users/"); */
     remove(ref(db,"users/"+id))
+    Toastify("Deleteed Succesfully")
+
 }
 
 export const UpdateUser = (info) => {
